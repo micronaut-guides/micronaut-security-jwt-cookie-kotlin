@@ -51,13 +51,13 @@ dependencies {
     runtime "ch.qos.logback:logback-classic:1.2.3"
 
     //tag::securitydependency[]
+    compile "io.micronaut:views"
     compile "io.micronaut:security-jwt"
     //end::securitydependency[]
 
     //tag::velocity[]
     compile "org.apache.velocity:velocity-engine-core:2.0"
     //end::velocity[]
-
 
     //tag::spock[]
     testCompile "org.codehaus.groovy:groovy-all:2.5.0"
