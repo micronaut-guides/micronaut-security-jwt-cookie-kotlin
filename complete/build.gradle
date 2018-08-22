@@ -6,7 +6,8 @@ buildscript {
     dependencies {
         classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
         classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.31"
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.15"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         //tag::buildscriptDependenciesWebdriverBinaries[]
         classpath "gradle.plugin.com.energizedwork.webdriver-binaries:webdriver-binaries-gradle-plugin:1.4"
         //end::buildscriptDependenciesWebdriverBinaries[]
@@ -19,11 +20,14 @@ group "example.micronaut"
 apply plugin:"io.spring.dependency-management"
 apply plugin:"com.github.johnrengelman.shadow"
 apply plugin:"application"
-apply plugin:"kotlin"
 //tag::applygroovy[]
 apply plugin:"groovy"
 //end::applygroovy[]
+apply plugin:"net.ltgt.apt-eclipse"
+apply plugin:"net.ltgt.apt-idea"
+apply plugin:"kotlin"
 apply plugin:"kotlin-kapt"
+
 //tag::applyPluginWebdriverBinaries[]
 apply plugin:"com.energizedwork.webdriver-binaries"
 //end::applyPluginWebdriverBinaries[]
@@ -43,8 +47,8 @@ dependencyManagement {
 dependencies {
     compile "io.micronaut:http-client"
     compile "io.micronaut:http-server-netty"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.31"
-    compile "org.jetbrains.kotlin:kotlin-reflect:1.2.31"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "io.micronaut:runtime"
     kapt "io.micronaut:inject-java"
     kaptTest "io.micronaut:inject-java"
@@ -98,7 +102,7 @@ compileTestKotlin {
 
 //tag::webdriverBinaries[]
 webdriverBinaries {
-    chromedriver '2.40'
+    chromedriver '2.41'
     geckodriver '0.21.0'
 }
 //end::webdriverBinaries[]
