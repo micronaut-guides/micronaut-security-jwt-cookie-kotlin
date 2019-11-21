@@ -127,3 +127,4 @@ tasks.withType(Test) {
 }
 //end::taskWithTypeTest[]
 
+apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"
