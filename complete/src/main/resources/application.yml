@@ -5,22 +5,14 @@ micronaut:
 #tag::security[]
 micronaut:
   security:
-    enabled: true # <1>
-    endpoints:
-      login:
-        enabled: true # <2>
-      logout:
-        enabled: true # <3>
+    authentication: cookie # <1>
+    redirect:
+      login-failure: /login/authFailed  # <2>
     token:
       jwt:
-        enabled: true # <4>
-        bearer:
-          enabled: false # <5>
-        cookie:
-          enabled: true # <6>
-          loginFailureTargetUrl: /login/authFailed # <7>
         signatures:
           secret:
-            generator: # <8>
-              secret: pleaseChangeThisSecretForANewOne # <9>
+            generator:  # <3>
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"' # <4>
 #end::security[]
+

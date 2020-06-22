@@ -3,7 +3,6 @@ package example.micronaut
 import geb.spock.GebSpec
 import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.test.annotation.MicronautTest
-import spock.lang.IgnoreIf
 
 import javax.inject.Inject
 //tag::clazz[]
@@ -13,7 +12,6 @@ class AuthenticationSpec extends GebSpec {
     @Inject
     EmbeddedServer embeddedServer // <2>
 
-    @IgnoreIf({ !sys['geb.env'] })
     def "verify session based authentication works"() {
         given:
         browser.baseUrl = "http://localhost:${embeddedServer.port}"
